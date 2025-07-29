@@ -36,4 +36,4 @@ To try it out:
 
 [Apache 2.0](./LICENSE)
 
-> Made with ❤️ for multi-tenant Kubernetes platforms
+> Made with ❤️ for multi-tenant Kubernetes platforms by Stakater
