@@ -2,8 +2,6 @@
 
 **Replicator Operator** enables real-time, multi-cluster synchronization of Kubernetes manifests like Secrets, ConfigMaps, and RBAC resources. It is designed for platform teams operating across namespaces and clusters.
 
----
-
 ## 🚀 Features
 
 * 🔁 Sync resources within and across clusters
@@ -11,8 +9,6 @@
 * 🎯 Target by namespace name or label selector
 * 🔐 Secure and RBAC-aware (no agents required in hosted clusters)
 * 📜 Declarative CRD (`ManifestSync`) with full status tracking
-
----
 
 ## 🧪 Getting Started
 
@@ -24,15 +20,11 @@ To try it out:
 2. Create a `ManifestSync` resource targeting namespaces and clusters
 3. Watch resources sync in real time
 
----
-
 ## 📁 Documentation
 
 * [Why this exists](./docs/why.md) – Motivation & landscape
 * [Design overview](./docs/design.md) – Architecture, controller flow
 * [CR example](./docs/cr.md) – Full `ManifestSync` YAML with status
-
----
 
 ## 📌 Status
 
@@ -40,12 +32,8 @@ To try it out:
 🚧 Controller Implementation in Progress
 📦 Helm Chart TBD
 
----
-
 ## ✨ License
 
 [Apache 2.0](./LICENSE)
-
----
 
 > Made with ❤️ for multi-tenant Kubernetes platforms

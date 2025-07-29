@@ -2,16 +2,12 @@
 
 This document describes the internal architecture, controller logic, and reconciliation strategy of the **Replicator Operator**, which implements the `ManifestSync` Custom Resource for syncing Kubernetes manifests across namespaces and clusters.
 
----
-
 ## 🎯 Goals
 
 * 🔁 Synchronize Secrets, ConfigMaps, and other Kubernetes resources
 * 🚀 Support both in-cluster and remote-cluster targets
 * 🧩 Allow patching, pruning, and policy-based resource handling
 * ⏱ Provide real-time and interval-based sync options
-
----
 
 ## 🧱 Core Concepts
 
@@ -31,8 +27,6 @@ Defines the source resource, sync targets, and policies like:
 * ConfigMaps
 * RBAC resources (Roles, RoleBindings)
 * Potentially any Kubernetes resource (via unstructured client)
-
----
 
 ## 🛠 Architecture Overview
 
@@ -57,8 +51,6 @@ Defines the source resource, sync targets, and policies like:
 | dev-cluster   |  | prod-cluster     |
 +---------------+  +------------------+
 ```
-
----
 
 ## 🔄 Reconciliation Flow
 
@@ -86,8 +78,6 @@ Defines the source resource, sync targets, and policies like:
    * Record per-target sync result (Synced, Failed, etc.)
    * Set `conditions`, `lastSuccessfulSyncTime`, etc.
 
----
-
 ## ⚖️ Policies Explained
 
 | Policy      | Behavior                                  |
@@ -97,15 +87,11 @@ Defines the source resource, sync targets, and policies like:
 | `Overwrite` | Force replace even if resource exists     |
 | `Sync`      | Default: create/update as needed          |
 
----
-
 ## 🔐 Security Considerations
 
 * Use tightly scoped `ServiceAccount` tokens for remote cluster access
 * Store kubeconfigs and tokens in sealed secrets or external vaults
 * Enforce RBAC on CRD and `sourceRef` access
-
----
 
 ## 🧪 Observability
 
@@ -116,8 +102,6 @@ Defines the source resource, sync targets, and policies like:
   * Sync duration
   * Failure count per target
   * Resource count synced
-
----
 
 ## 📦 Extensibility Ideas
 

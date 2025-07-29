@@ -2,8 +2,6 @@
 
 This document explains the **motivation**, **context**, and **justification** for building the Replicator Operator. It outlines the existing landscape, limitations of current tools, and what makes this solution both necessary and unique.
 
----
-
 ## 📜 Background & History
 
 In multi-tenant Kubernetes environments — especially platform-engineered setups where clusters serve multiple teams or tenants — there's often a need to **share Kubernetes resources** like:
@@ -25,8 +23,6 @@ But there is **no standard way to reliably and declaratively sync these resource
 * Namespaces across **different clusters**
 
 This gap has led to repeated scripting, fragile automation, and inconsistent GitOps workarounds.
-
----
 
 ## 🧭 Existing Solutions & Their Limitations
 
@@ -66,8 +62,6 @@ This gap has led to repeated scripting, fragile automation, and inconsistent Git
 * ✅ Fast to prototype
 * ❌ Fragile, hard to maintain, no feedback loop
 
----
-
 ## 🚀 Why We're Building the Replicator Operator
 
 We need a purpose-built, Kubernetes-native way to **declaratively replicate resources** both within and across clusters — securely, scalably, and observably.
@@ -85,8 +79,6 @@ We need a purpose-built, Kubernetes-native way to **declaratively replicate reso
 | ✅ GitOps-compatible                   | Yes                           |
 | ✅ Minimal hosted cluster dependencies | No agents required            |
 
----
-
 ## 🌍 Use Cases
 
 * Distribute TLS certs to tenant namespaces and clusters
@@ -94,8 +86,6 @@ We need a purpose-built, Kubernetes-native way to **declaratively replicate reso
 * Sync baseline RBAC policies to project namespaces
 * Enable hybrid GitOps+Controller workflows (e.g., Git adds source secret, controller syncs it live)
 * Share cluster-scoped config without re-declaring everywhere
-
----
 
 ## 📌 Why This is the First of Its Kind
 
@@ -106,8 +96,6 @@ No open-source operator today offers a:
 * Real-time sync that works **without requiring agents** in remote clusters
 
 The Replicator Operator is built to fill this gap with simplicity, extensibility, and zero-hosted-dependency mindset — a first in the Kubernetes ecosystem.
-
----
 
 ## ✅ Summary
 
