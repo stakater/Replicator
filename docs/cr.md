@@ -35,7 +35,7 @@ spec:
             name: kubeconfig-dev
             namespace: sync-operator
         targetNamespace: dev-ns
-        resourceManagementPolicy: Keep
+        resourceManagementPolicy: Keep  # Enum: Keep, Adopt, Overwrite, Sync
 
       - clusterName: prod-cluster
         connection:
@@ -44,7 +44,7 @@ spec:
             name: sa-token-prod
             namespace: sync-operator
         targetNamespace: prod-ns
-        resourceManagementPolicy: Overwrite
+        resourceManagementPolicy: Overwrite  # Enum: Keep, Adopt, Overwrite, Sync
 
   # Prune behavior
   prune:
@@ -65,6 +65,10 @@ spec:
         labels:
           synced-by: replicator
           compliance: enforced
+
+  replicationOptions:
+    stripLabels: true
+    keepOwnerReferences: false
 
 status:
   conditions:

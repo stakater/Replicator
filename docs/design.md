@@ -20,6 +20,7 @@ Defines the source resource, sync targets, and policies like:
 * `syncPolicy`: Immediate or interval
 * `patch`: Optional overlay
 * `prune`: Cleanup logic
+* `replicationOptions`: Metadata control (e.g., strip labels, ownerReferences)
 
 ### Resource Types Supported
 
@@ -68,6 +69,7 @@ Defines the source resource, sync targets, and policies like:
 
    * Apply optional `patch`
    * Sanitize metadata (remove UID, resourceVersion, etc.)
+   * Respect replicationOptions like stripLabels or keepOwnerReferences
 4. **Apply to targets**:
 
    * For `inCluster`: use standard controller-runtime client
@@ -103,9 +105,8 @@ Defines the source resource, sync targets, and policies like:
   * Failure count per target
   * Resource count synced
 
-## 📦 Extensibility Ideas
+## 🔄 Explicit Non-Goals
 
-* Add `patchContentRef` (refer to ConfigMap or Secret for large patches)
-* Allow syncing from Git-backed manifest bundles
-* Add webhooks for validating `ManifestSync` CRs
-* Support multi-resource bundles (e.g. Deployment + Secret)
+❌ Pull-Based Replication
+
+We intentionally do not support pull-based (annotation-driven) replication. While this model may work for single-cluster environments, it breaks with the Replicator Operator's goals of declarative, auditable, and multi-cluster-friendly synchronization. All syncs are managed via the ManifestSync CRD for full traceability and control.
