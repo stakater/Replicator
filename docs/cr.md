@@ -1,6 +1,6 @@
 # ManifestSync Custom Resource
 
-This document provides a complete example and explanation of the `ManifestSync` Custom Resource (CR) for the **Replicator Operator**. This CR enables real-time or scheduled replication of Kubernetes resources (e.g., Secrets, ConfigMaps, RBAC) across namespaces and clusters.
+This document provides a complete example and explanation of the `ManifestSync` Custom Resource (CR) for the **Replicator Operator**. This CR enables real-time or scheduled replication of Secrets, ConfigMaps and RBAC across namespaces and clusters.
 
 ```yaml
 apiVersion: sync.stakater.com/v1alpha1

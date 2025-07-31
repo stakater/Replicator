@@ -1,10 +1,10 @@
 # Replicator Operator – Design Document
 
-This document describes the internal architecture, controller logic, and reconciliation strategy of the **Replicator Operator**, which implements the `ManifestSync` Custom Resource for syncing Kubernetes manifests across namespaces and clusters.
+This document describes the internal architecture, controller logic, and reconciliation strategy of the **Replicator Operator**, which implements the `ManifestSync` Custom Resource for syncing Kubernetes manifests (Secrets, ConfigMaps and RBAC) across namespaces and clusters.
 
 ## 🎯 Goals
 
-* 🔁 Synchronize Secrets, ConfigMaps, and other Kubernetes resources
+* 🔁 Synchronize Secrets, ConfigMaps, and RBAC
 * 🚀 Support both in-cluster and remote-cluster targets
 * 🧩 Allow patching, pruning, and policy-based resource handling
 * ⏱ Provide real-time and interval-based sync options
@@ -27,7 +27,6 @@ Defines the source resource, sync targets, and policies like:
 * Secrets
 * ConfigMaps
 * RBAC resources (Roles, RoleBindings)
-* Potentially any Kubernetes resource (via unstructured client)
 
 ## 🛠 Architecture Overview
 
