@@ -27,24 +27,28 @@ spec:
           environment: production
       resourceManagementPolicy: Sync  # Enum: Keep, Adopt, Overwrite, Sync
 
-    remoteClusters:
-      - clusterName: dev-cluster
-        connection:
-          type: KubeconfigSecret
-          kubeconfigSecretRef:
-            name: kubeconfig-dev
-            namespace: sync-operator
-        targetNamespace: dev-ns
-        resourceManagementPolicy: Keep  # Enum: Keep, Adopt, Overwrite, Sync
+  remoteClusters:
+    # Select clusters using label selectors; resolved via internal cluster registry (e.g., ACM, ConfigMap, etc.)
+    clusterSelector:
+      matchLabels:
+        replicator-enabled: "true"
+        environment: "prod"
 
-      - clusterName: prod-cluster
-        connection:
-          type: ServiceAccountToken
-          serviceAccountTokenRef:
-            name: sa-token-prod
-            namespace: sync-operator
-        targetNamespace: prod-ns
-        resourceManagementPolicy: Overwrite  # Enum: Keep, Adopt, Overwrite, Sync
+    # Strategy to decide the destination namespace in each remote cluster
+    targetNamespaceStrategy:
+      type: FromClusterAnnotation            # Options: Static, SameAsSource, FromClusterAnnotation
+      annotationKey: replicator.platform.io/target-namespace
+      fallbackNamespace: default             # Used if annotation is missing on cluster object
+
+    # Remote access configuration using ServiceAccount tokens
+    connection:
+      type: ServiceAccountToken              # Only supported type in MVP
+      serviceAccountTokenSecretRef:
+        name: sa-token-<clusterName>         # Resolved dynamically per cluster
+        namespace: sync-operator
+
+    # Sync behavior for managing the replicated resources
+    resourceManagementPolicy: Sync           # Options: Keep, Adopt, Overwrite, Sync
 
   # Prune behavior
   prune:

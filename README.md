@@ -25,6 +25,7 @@ To try it out:
 * [Why this exists](./docs/why.md) – Motivation & landscape
 * [Design overview](./docs/design.md) – Architecture, controller flow
 * [CR example](./docs/cr.md) – Full `ManifestSync` YAML with status
+* [Use Cases](./docs/usecases.md)
 
 ## 📌 Status
 
