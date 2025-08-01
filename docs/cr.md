@@ -27,28 +27,28 @@ spec:
           environment: production
       resourceManagementPolicy: Sync  # Enum: Keep, Adopt, Overwrite, Sync
 
-  remoteClusters:
-    # Select clusters using label selectors; resolved via internal cluster registry (e.g., ACM, ConfigMap, etc.)
-    clusterSelector:
-      matchLabels:
-        replicator-enabled: "true"
-        environment: "prod"
+    remoteClusters:
+      # Select clusters using label selectors; resolved via internal cluster registry (e.g., ACM, ConfigMap, etc.)
+      clusterSelector:
+        matchLabels:
+          replicator-enabled: "true"
+          environment: "prod"
 
-    # Strategy to decide the destination namespace in each remote cluster
-    targetNamespaceStrategy:
-      type: FromClusterAnnotation            # Options: Static, SameAsSource, FromClusterAnnotation
-      annotationKey: replicator.platform.io/target-namespace
-      fallbackNamespace: default             # Used if annotation is missing on cluster object
+      # Strategy to decide the destination namespace in each remote cluster
+      targetNamespaceStrategy:
+        type: FromClusterAnnotation            # Options: Static, SameAsSource, FromClusterAnnotation
+        annotationKey: replicator.platform.io/target-namespace
+        fallbackNamespace: default             # Used if annotation is missing on cluster object
 
-    # Remote access configuration using ServiceAccount tokens
-    connection:
-      type: ServiceAccountToken              # Only supported type in MVP
-      serviceAccountTokenSecretRef:
-        name: sa-token-<clusterName>         # Resolved dynamically per cluster
-        namespace: sync-operator
+      # Remote access configuration using ServiceAccount tokens
+      connection:
+        type: ServiceAccountToken              # Only supported type in MVP
+        serviceAccountTokenSecretRef:
+          name: sa-token-<clusterName>         # Resolved dynamically per cluster
+          namespace: sync-operator
 
-    # Sync behavior for managing the replicated resources
-    resourceManagementPolicy: Sync           # Options: Keep, Adopt, Overwrite, Sync
+      # Sync behavior for managing the replicated resources
+      resourceManagementPolicy: Sync           # Options: Keep, Adopt, Overwrite, Sync
 
   # Prune behavior
   prune:
