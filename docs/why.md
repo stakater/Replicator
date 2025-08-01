@@ -62,6 +62,14 @@ This gap has led to repeated scripting, fragile automation, and inconsistent Git
 * ✅ Fast to prototype
 * ❌ Fragile, hard to maintain, no feedback loop
 
+### 7. Crossplane
+
+* ✅ Great for provisioning external infra (databases, buckets, etc.)
+* ❌ Not designed to replicate existing in-cluster K8s resources
+* ❌ No native way to watch & sync existing Secrets, ConfigMaps, RBAC
+* ❌ Not push-based or real-time
+* ❌ Adds overhead of XRDs and compositions for a simple sync use case
+
 ## 🚀 Why We're Building the Replicator Operator
 
 We need a purpose-built, Kubernetes-native way to **declaratively replicate resources** both within and across clusters — securely, scalably, and observably.
